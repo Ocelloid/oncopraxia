@@ -22,12 +22,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geist.variable}`}>
       <body>
-        <div className="min-h-screen w-full bg-gradient-to-b from-[#fff] to-[#ff3c0028]">
+        <div className="min-h-screen w-full">
           <Providers>
             <Header />
-            <main className="flex w-full flex-col items-center">
-              {children}
-            </main>
+            {children}
           </Providers>
         </div>
       </body>
