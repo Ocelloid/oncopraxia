@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import type { RiskAssessmentResult, BodyZone } from "~/types/cancer-risk";
-import { getCancerTypesForZone } from "./RiskCalculator";
 
 interface BodyImageOverlayProps {
   bodyZones: Record<string, BodyZone>;
@@ -20,7 +19,6 @@ interface RiskZoneProps {
   numbers: number[];
   isSelected: boolean;
   onClick: () => void;
-  onHover: (hovered: boolean) => void;
 }
 
 function RiskZone({
@@ -30,18 +28,15 @@ function RiskZone({
   numbers,
   isSelected,
   onClick,
-  onHover,
 }: RiskZoneProps) {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = () => {
     setIsHovered(true);
-    onHover(true);
   };
 
   const handleMouseLeave = () => {
     setIsHovered(false);
-    onHover(false);
   };
 
   return (
@@ -144,14 +139,8 @@ export default function BodyImageOverlay({
   onZoneSelect,
   selectedZone,
 }: BodyImageOverlayProps) {
-  const [hoveredZone, setHoveredZone] = useState<string | null>(null);
-
   const handleZoneClick = (zoneName: string) => {
     onZoneSelect(selectedZone === zoneName ? null : zoneName);
-  };
-
-  const handleZoneHover = (zoneName: string, hovered: boolean) => {
-    setHoveredZone(hovered ? zoneName : null);
   };
 
   return (
@@ -174,59 +163,9 @@ export default function BodyImageOverlay({
             numbers={numbers}
             isSelected={selectedZone === zoneName}
             onClick={() => handleZoneClick(zoneName)}
-            onHover={(hovered) => handleZoneHover(zoneName, hovered)}
           />
         );
       })}
-
-      {/* Информационная панель при наведении */}
-      {hoveredZone && !selectedZone && riskResults && (
-        <div
-          className="fixed z-50 max-w-xs rounded-lg border border-gray-200 bg-white p-3 shadow-xl"
-          style={{
-            top: "50%",
-            right: "20px",
-            transform: "translateY(-50%)",
-          }}
-        >
-          <h4 className="mb-2 font-semibold text-gray-800">
-            {getZoneLabel(hoveredZone)}
-          </h4>
-          <div className="text-sm text-gray-600">
-            {(() => {
-              const zoneRisks = getCancerTypesForZone(hoveredZone, riskResults);
-              if (zoneRisks.length === 0) {
-                return <p>Нет данных о рисках</p>;
-              }
-              return (
-                <div className="space-y-1">
-                  {zoneRisks.slice(0, 2).map((risk, index) => (
-                    <div key={index} className="flex justify-between text-xs">
-                      <span className="truncate">{risk.cancerType.name}</span>
-                      <span
-                        className={`ml-2 font-medium ${
-                          risk.riskLevel === "high"
-                            ? "text-red-600"
-                            : risk.riskLevel === "medium"
-                              ? "text-orange-600"
-                              : "text-green-600"
-                        }`}
-                      >
-                        {risk.riskLabel}
-                      </span>
-                    </div>
-                  ))}
-                  {zoneRisks.length > 2 && (
-                    <p className="text-xs text-gray-500">
-                      +{zoneRisks.length - 2} ещё...
-                    </p>
-                  )}
-                </div>
-              );
-            })()}
-          </div>
-        </div>
-      )}
     </div>
   );
 }

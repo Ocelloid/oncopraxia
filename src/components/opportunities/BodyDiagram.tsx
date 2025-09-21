@@ -92,7 +92,7 @@ export default function BodyDiagram({
               width={300}
               height={400}
               className="h-auto w-full max-w-md rounded-lg shadow-sm"
-              style={{ maxWidth: "300px" }}
+              style={{ maxWidth: "275px" }}
               priority
             />
 
