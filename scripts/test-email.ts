@@ -113,9 +113,9 @@ async function testEmail(testEmail: string) {
 }
 
 // Получаем email из аргументов командной строки
-const testEmail = process.argv[2];
+const targetEmail = process.argv[2];
 
-if (!testEmail) {
+if (!targetEmail) {
   console.error("❌ Укажите email для тестирования:");
   console.error(
     "Использование: npx tsx scripts/test-email.ts test@example.com",
@@ -123,9 +123,9 @@ if (!testEmail) {
   process.exit(1);
 }
 
-if (!testEmail.includes("@")) {
+if (!targetEmail.includes("@")) {
   console.error("❌ Укажите корректный email адрес");
   process.exit(1);
 }
 
-void testEmail(testEmail);
+void testEmail(targetEmail);
