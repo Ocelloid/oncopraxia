@@ -7,7 +7,7 @@ export default function Header() {
   const { data: session } = useSession();
 
   return (
-    <header className="w-full border-b border-white/10 bg-white/5 backdrop-blur-sm">
+    <header className="fixed top-0 z-50 w-full border-b border-white/10 bg-white/5 backdrop-blur-sm">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between transition-colors hover:text-black/80">
           {/* Логотип/название сайта */}

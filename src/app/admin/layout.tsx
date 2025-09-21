@@ -26,9 +26,12 @@ export default async function AdminLayout({
   }
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
+    <div
+      className="flex flex-1 flex-grow bg-gray-50"
+      style={{ height: "calc(100vh - 134px)" }}
+    >
       <AdminSidebar />
-      <main className="flex-1 p-6">
+      <main className="h-full flex-1 flex-grow p-6">
         <div className="mx-auto max-w-7xl">{children}</div>
       </main>
     </div>

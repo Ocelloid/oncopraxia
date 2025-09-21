@@ -4,6 +4,7 @@ import { type Metadata } from "next";
 import { Geist } from "next/font/google";
 import Providers from "./providers";
 import Header from "~/components/Header";
+import Footer from "~/components/Footer";
 
 export const metadata: Metadata = {
   title: "Онконастороженность",
@@ -22,10 +23,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geist.variable}`}>
       <body>
-        <div className="min-h-screen w-full">
+        <div className="flex min-h-screen w-full flex-1 flex-col">
           <Providers>
             <Header />
-            {children}
+            <main className="h-full flex-1 pt-16">{children}</main>
+            <Footer />
           </Providers>
         </div>
       </body>

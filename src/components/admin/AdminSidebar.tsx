@@ -74,7 +74,7 @@ export default function AdminSidebar() {
   const pathname = usePathname();
 
   return (
-    <div className="flex h-screen w-64 flex-col bg-white shadow-lg">
+    <div className="flex h-full w-64 flex-col bg-white shadow-lg">
       <div className="flex h-16 items-center justify-center border-b border-gray-200">
         <h1 className="text-xl font-bold text-gray-800">Панель управления</h1>
       </div>
@@ -101,7 +101,7 @@ export default function AdminSidebar() {
         })}
       </nav>
 
-      <div className="border-t border-gray-200 p-3">
+      <div className="mt-auto border-t border-gray-200 p-3">
         <Link
           href="/admin/settings"
           className={`mb-2 flex items-center rounded-lg px-3 py-2 text-sm font-medium transition-colors ${

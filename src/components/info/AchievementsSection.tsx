@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function AchievementsSection() {
   return (
-    <section className="bg-white py-20">
+    <section className="bg-white pt-20">
       <div className="container mx-auto px-4">
         <div className="mb-16 text-center">
           <h2 className="mb-6 text-4xl font-bold text-gray-900 md:text-5xl">
