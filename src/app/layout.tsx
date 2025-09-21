@@ -3,6 +3,7 @@ import "~/styles/globals.css";
 import { type Metadata } from "next";
 import { Geist } from "next/font/google";
 import Providers from "./providers";
+import Header from "~/components/Header";
 
 export const metadata: Metadata = {
   title: "Онконастороженность",
@@ -21,9 +22,14 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geist.variable}`}>
       <body>
-        <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#f8f3ff] to-[#ffa185]">
-          <Providers>{children}</Providers>
-        </main>
+        <div className="min-h-screen w-full bg-gradient-to-b from-[#fff] to-[#ff3c0028]">
+          <Providers>
+            <Header />
+            <main className="flex w-full flex-col items-center">
+              {children}
+            </main>
+          </Providers>
+        </div>
       </body>
     </html>
   );
