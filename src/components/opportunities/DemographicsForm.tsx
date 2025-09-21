@@ -48,7 +48,8 @@ export default function DemographicsForm({
           selectedKeys={formData.gender ? [formData.gender] : []}
           onSelectionChange={(keys) => {
             const selectedKey = Array.from(keys)[0] as string;
-            updateFormData({ gender: selectedKey as "male" | "female" });
+            if (!!selectedKey)
+              updateFormData({ gender: selectedKey as "male" | "female" });
           }}
           variant="bordered"
           size="md"
@@ -69,7 +70,7 @@ export default function DemographicsForm({
           selectedKeys={formData.city ? [formData.city] : []}
           onSelectionChange={(keys) => {
             const selectedKey = Array.from(keys)[0] as string;
-            updateFormData({ city: selectedKey });
+            if (!!selectedKey) updateFormData({ city: selectedKey });
           }}
           variant="bordered"
           size="md"
@@ -95,7 +96,7 @@ export default function DemographicsForm({
           selectedKeys={formData.profession ? [formData.profession] : []}
           onSelectionChange={(keys) => {
             const selectedKey = Array.from(keys)[0] as string;
-            updateFormData({ profession: selectedKey });
+            if (!!selectedKey) updateFormData({ profession: selectedKey });
           }}
           variant="bordered"
           size="md"
@@ -121,7 +122,7 @@ export default function DemographicsForm({
           selectedKeys={formData.maritalStatus ? [formData.maritalStatus] : []}
           onSelectionChange={(keys) => {
             const selectedKey = Array.from(keys)[0] as string;
-            updateFormData({ maritalStatus: selectedKey });
+            if (!!selectedKey) updateFormData({ maritalStatus: selectedKey });
           }}
           variant="bordered"
           size="md"

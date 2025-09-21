@@ -28,9 +28,10 @@ export default function RiskFactorsForm({
             selectedKeys={formData.smoking ? [formData.smoking] : []}
             onSelectionChange={(keys) => {
               const selectedKey = Array.from(keys)[0] as string;
-              updateFormData({
-                smoking: selectedKey as "yes" | "former" | "no",
-              });
+              if (!!selectedKey)
+                updateFormData({
+                  smoking: selectedKey as "yes" | "former" | "no",
+                });
             }}
             variant="bordered"
             size="md"
@@ -71,13 +72,14 @@ export default function RiskFactorsForm({
             selectedKeys={formData.alcohol ? [formData.alcohol] : []}
             onSelectionChange={(keys) => {
               const selectedKey = Array.from(keys)[0] as string;
-              updateFormData({
-                alcohol: selectedKey as
-                  | "never"
-                  | "rarely"
-                  | "moderate"
-                  | "frequent",
-              });
+              if (!!selectedKey)
+                updateFormData({
+                  alcohol: selectedKey as
+                    | "never"
+                    | "rarely"
+                    | "moderate"
+                    | "frequent",
+                });
             }}
             variant="bordered"
             size="md"
@@ -137,9 +139,10 @@ export default function RiskFactorsForm({
             }
             onSelectionChange={(keys) => {
               const selectedKey = Array.from(keys)[0] as string;
-              updateFormData({
-                physicalActivity: selectedKey as "low" | "medium" | "high",
-              });
+              if (!!selectedKey)
+                updateFormData({
+                  physicalActivity: selectedKey as "low" | "medium" | "high",
+                });
             }}
             variant="bordered"
             size="md"
@@ -183,9 +186,10 @@ export default function RiskFactorsForm({
             selectedKeys={formData.diet ? [formData.diet] : []}
             onSelectionChange={(keys) => {
               const selectedKey = Array.from(keys)[0] as string;
-              updateFormData({
-                diet: selectedKey as "balanced" | "unbalanced",
-              });
+              if (!!selectedKey)
+                updateFormData({
+                  diet: selectedKey as "balanced" | "unbalanced",
+                });
             }}
             variant="bordered"
             size="md"
@@ -232,7 +236,8 @@ export default function RiskFactorsForm({
             }
             onSelectionChange={(keys) => {
               const selectedKey = Array.from(keys)[0] as string;
-              updateFormData({ familyHistory: selectedKey as "yes" | "no" });
+              if (!!selectedKey)
+                updateFormData({ familyHistory: selectedKey as "yes" | "no" });
             }}
             variant="bordered"
             size="md"
@@ -279,7 +284,8 @@ export default function RiskFactorsForm({
             selectedKeys={formData.chemicals ? [formData.chemicals] : []}
             onSelectionChange={(keys) => {
               const selectedKey = Array.from(keys)[0] as string;
-              updateFormData({ chemicals: selectedKey as "yes" | "no" });
+              if (!!selectedKey)
+                updateFormData({ chemicals: selectedKey as "yes" | "no" });
             }}
             variant="bordered"
             size="md"
@@ -308,7 +314,8 @@ export default function RiskFactorsForm({
             selectedKeys={formData.radiation ? [formData.radiation] : []}
             onSelectionChange={(keys) => {
               const selectedKey = Array.from(keys)[0] as string;
-              updateFormData({ radiation: selectedKey as "yes" | "no" });
+              if (!!selectedKey)
+                updateFormData({ radiation: selectedKey as "yes" | "no" });
             }}
             variant="bordered"
             size="md"
@@ -346,7 +353,8 @@ export default function RiskFactorsForm({
             selectedKeys={formData.diabetes ? [formData.diabetes] : []}
             onSelectionChange={(keys) => {
               const selectedKey = Array.from(keys)[0] as string;
-              updateFormData({ diabetes: selectedKey as "yes" | "no" });
+              if (!!selectedKey)
+                updateFormData({ diabetes: selectedKey as "yes" | "no" });
             }}
             variant="bordered"
             size="md"
@@ -366,7 +374,8 @@ export default function RiskFactorsForm({
             selectedKeys={formData.hypertension ? [formData.hypertension] : []}
             onSelectionChange={(keys) => {
               const selectedKey = Array.from(keys)[0] as string;
-              updateFormData({ hypertension: selectedKey as "yes" | "no" });
+              if (!!selectedKey)
+                updateFormData({ hypertension: selectedKey as "yes" | "no" });
             }}
             variant="bordered"
             size="md"
