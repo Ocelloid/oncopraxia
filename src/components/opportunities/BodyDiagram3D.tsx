@@ -123,11 +123,11 @@ function RiskZone({
                 if (numbers.length === 1) {
                   return numbers[0];
                 } else if (numbers.length === 2) {
-                  return `${numbers[0]},${numbers[1]}`;
-                } else if (numbers.length <= 4) {
-                  return numbers.join(",");
+                  return `${numbers[0]} ${numbers[1]}`;
+                } else if (numbers.length <= 6) {
+                  return numbers.join(" ");
                 } else {
-                  return `${numbers.slice(0, 3).join(",")}\n+${numbers.length - 3}`;
+                  return `${numbers.slice(0, 3).join(" ")}\n+${numbers.length - 3}`;
                 }
               })()}
             </span>
