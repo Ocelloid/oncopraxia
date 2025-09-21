@@ -2,12 +2,27 @@
 
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, Suspense, useEffect } from "react";
 import { signIn } from "next-auth/react";
 
-export default function VerifyRequest() {
+// Компонент для работы с search parameters
+function SearchParamsHandler({
+  onParamsReceived,
+}: {
+  onParamsReceived: (email: string | null) => void;
+}) {
   const searchParams = useSearchParams();
   const email = searchParams.get("email");
+
+  useEffect(() => {
+    onParamsReceived(email);
+  }, [email, onParamsReceived]);
+
+  return null;
+}
+
+// Основной компонент верификации
+function VerifyRequestContent({ email }: { email: string | null }) {
   const [isResending, setIsResending] = useState(false);
   const [resent, setResent] = useState(false);
 
@@ -180,5 +195,27 @@ export default function VerifyRequest() {
         </div>
       </div>
     </div>
+  );
+}
+
+// Главный экспортируемый компонент с Suspense
+export default function VerifyRequest() {
+  const [email, setEmail] = useState<string | null>(null);
+
+  const handleParamsReceived = (newEmail: string | null) => {
+    setEmail(newEmail);
+  };
+
+  return (
+    <Suspense
+      fallback={
+        <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-blue-50 via-white to-red-50">
+          <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-red-600"></div>
+        </div>
+      }
+    >
+      <SearchParamsHandler onParamsReceived={handleParamsReceived} />
+      <VerifyRequestContent email={email} />
+    </Suspense>
   );
 }

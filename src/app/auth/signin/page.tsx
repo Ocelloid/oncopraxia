@@ -1,17 +1,38 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense, useEffect } from "react";
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 
-export default function SignIn() {
-  const [email, setEmail] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+// Компонент для работы с search parameters
+function SearchParamsHandler({
+  onParamsReceived,
+}: {
+  onParamsReceived: (callbackUrl: string, error: string | null) => void;
+}) {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") ?? "/";
   const error = searchParams.get("error");
+
+  useEffect(() => {
+    onParamsReceived(callbackUrl, error);
+  }, [callbackUrl, error, onParamsReceived]);
+
+  return null;
+}
+
+// Основной компонент входа
+function SignInContent({
+  callbackUrl,
+  error,
+}: {
+  callbackUrl: string;
+  error: string | null;
+}) {
+  const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -213,5 +234,32 @@ export default function SignIn() {
         </div>
       </div>
     </div>
+  );
+}
+
+// Главный экспортируемый компонент с Suspense
+export default function SignIn() {
+  const [callbackUrl, setCallbackUrl] = useState("/");
+  const [error, setError] = useState<string | null>(null);
+
+  const handleParamsReceived = (
+    newCallbackUrl: string,
+    newError: string | null,
+  ) => {
+    setCallbackUrl(newCallbackUrl);
+    setError(newError);
+  };
+
+  return (
+    <Suspense
+      fallback={
+        <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-blue-50 via-white to-red-50">
+          <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-red-600"></div>
+        </div>
+      }
+    >
+      <SearchParamsHandler onParamsReceived={handleParamsReceived} />
+      <SignInContent callbackUrl={callbackUrl} error={error} />
+    </Suspense>
   );
 }

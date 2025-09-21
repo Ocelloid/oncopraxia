@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, Suspense, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 
@@ -98,10 +99,24 @@ const errorMessages = {
   },
 };
 
-export default function AuthError() {
+// Компонент для работы с search parameters
+function SearchParamsHandler({
+  onParamsReceived,
+}: {
+  onParamsReceived: (error: string) => void;
+}) {
   const searchParams = useSearchParams();
   const error = searchParams.get("error") ?? "Default";
 
+  useEffect(() => {
+    onParamsReceived(error);
+  }, [error, onParamsReceived]);
+
+  return null;
+}
+
+// Основной компонент ошибки
+function AuthErrorContent({ error }: { error: string }) {
   const errorInfo =
     errorMessages[error as keyof typeof errorMessages] || errorMessages.Default;
 
@@ -260,5 +275,27 @@ export default function AuthError() {
         </div>
       </div>
     </div>
+  );
+}
+
+// Главный экспортируемый компонент с Suspense
+export default function AuthError() {
+  const [error, setError] = useState("Default");
+
+  const handleParamsReceived = (newError: string) => {
+    setError(newError);
+  };
+
+  return (
+    <Suspense
+      fallback={
+        <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-blue-50 via-white to-red-50">
+          <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-red-600"></div>
+        </div>
+      }
+    >
+      <SearchParamsHandler onParamsReceived={handleParamsReceived} />
+      <AuthErrorContent error={error} />
+    </Suspense>
   );
 }
