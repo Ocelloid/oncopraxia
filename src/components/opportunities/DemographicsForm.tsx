@@ -73,6 +73,10 @@ export default function DemographicsForm({
           }}
           variant="bordered"
           size="md"
+          classNames={{
+            listboxWrapper: "max-h-[300px]",
+            popoverContent: "w-full min-w-[250px]",
+          }}
         >
           {data.cities.map((city) => (
             <SelectItem key={city}>{city}</SelectItem>
@@ -95,6 +99,10 @@ export default function DemographicsForm({
           }}
           variant="bordered"
           size="md"
+          classNames={{
+            listboxWrapper: "max-h-[300px]",
+            popoverContent: "w-full min-w-[250px]",
+          }}
         >
           {data.professions.map((profession) => (
             <SelectItem key={profession}>{profession}</SelectItem>
@@ -117,6 +125,10 @@ export default function DemographicsForm({
           }}
           variant="bordered"
           size="md"
+          classNames={{
+            listboxWrapper: "max-h-[300px]",
+            popoverContent: "w-full min-w-[220px]",
+          }}
         >
           {data.maritalStatus.map((status) => (
             <SelectItem key={status}>{status}</SelectItem>

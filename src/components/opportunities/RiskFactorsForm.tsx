@@ -84,13 +84,38 @@ export default function RiskFactorsForm({
             classNames={{
               label: "text-sm font-medium text-gray-700 -mt-6",
               trigger: "mt-1",
+              listboxWrapper: "max-h-[400px]",
+              popoverContent: "w-full min-w-[280px]",
             }}
           >
-            <SelectItem key="never">Никогда</SelectItem>
-            <SelectItem key="rarely">Редко (по праздникам)</SelectItem>
-            <SelectItem key="moderate">Умеренно (1-2 раза в неделю)</SelectItem>
-            <SelectItem key="frequent">
-              Часто (ежедневно или почти ежедневно)
+            <SelectItem key="never" textValue="Никогда">
+              <div className="flex flex-col">
+                <span className="text-small">Никогда</span>
+              </div>
+            </SelectItem>
+            <SelectItem key="rarely" textValue="Редко">
+              <div className="flex flex-col">
+                <span className="text-small">Редко</span>
+                <span className="text-tiny text-default-400">
+                  по праздникам
+                </span>
+              </div>
+            </SelectItem>
+            <SelectItem key="moderate" textValue="Умеренно">
+              <div className="flex flex-col">
+                <span className="text-small">Умеренно</span>
+                <span className="text-tiny text-default-400">
+                  1-2 раза в неделю
+                </span>
+              </div>
+            </SelectItem>
+            <SelectItem key="frequent" textValue="Часто">
+              <div className="flex flex-col">
+                <span className="text-small">Часто</span>
+                <span className="text-tiny text-default-400">
+                  ежедневно или почти ежедневно
+                </span>
+              </div>
             </SelectItem>
           </Select>
         </CardBody>
@@ -121,13 +146,34 @@ export default function RiskFactorsForm({
             classNames={{
               label: "text-sm font-medium text-gray-700 -mt-6",
               trigger: "mt-1",
+              listboxWrapper: "max-h-[400px]",
+              popoverContent: "w-full min-w-[280px]",
             }}
           >
-            <SelectItem key="low">Низкая (сидячий образ жизни)</SelectItem>
-            <SelectItem key="medium">
-              Средняя (2-3 тренировки в неделю)
+            <SelectItem key="low" textValue="Низкая">
+              <div className="flex flex-col">
+                <span className="text-small">Низкая</span>
+                <span className="text-tiny text-default-400">
+                  сидячий образ жизни
+                </span>
+              </div>
             </SelectItem>
-            <SelectItem key="high">Высокая (ежедневные тренировки)</SelectItem>
+            <SelectItem key="medium" textValue="Средняя">
+              <div className="flex flex-col">
+                <span className="text-small">Средняя</span>
+                <span className="text-tiny text-default-400">
+                  2-3 тренировки в неделю
+                </span>
+              </div>
+            </SelectItem>
+            <SelectItem key="high" textValue="Высокая">
+              <div className="flex flex-col">
+                <span className="text-small">Высокая</span>
+                <span className="text-tiny text-default-400">
+                  ежедневные тренировки
+                </span>
+              </div>
+            </SelectItem>
           </Select>
 
           {/* Питание */}
@@ -146,13 +192,25 @@ export default function RiskFactorsForm({
             classNames={{
               label: "text-sm font-medium text-gray-700 -mt-6",
               trigger: "mt-1",
+              listboxWrapper: "max-h-[400px]",
+              popoverContent: "w-full min-w-[320px]",
             }}
           >
-            <SelectItem key="balanced">
-              Сбалансированное (фрукты, овощи, минимум фастфуда)
+            <SelectItem key="balanced" textValue="Сбалансированное">
+              <div className="flex flex-col">
+                <span className="text-small">Сбалансированное</span>
+                <span className="text-tiny text-default-400">
+                  фрукты, овощи, минимум фастфуда
+                </span>
+              </div>
             </SelectItem>
-            <SelectItem key="unbalanced">
-              Несбалансированное (много жирной пищи, фастфуда)
+            <SelectItem key="unbalanced" textValue="Несбалансированное">
+              <div className="flex flex-col">
+                <span className="text-small">Несбалансированное</span>
+                <span className="text-tiny text-default-400">
+                  много жирной пищи, фастфуда
+                </span>
+              </div>
             </SelectItem>
           </Select>
         </CardBody>
@@ -228,11 +286,18 @@ export default function RiskFactorsForm({
             classNames={{
               label: "text-sm font-medium text-gray-700 -mt-6",
               trigger: "mt-1",
+              listboxWrapper: "max-h-[400px]",
+              popoverContent: "w-full min-w-[300px]",
             }}
           >
             <SelectItem key="no">Нет</SelectItem>
-            <SelectItem key="yes">
-              Да, работаю с химическими веществами
+            <SelectItem key="yes" textValue="Да">
+              <div className="flex flex-col">
+                <span className="text-small">Да</span>
+                <span className="text-tiny text-default-400">
+                  работаю с химическими веществами
+                </span>
+              </div>
             </SelectItem>
           </Select>
 
@@ -250,11 +315,18 @@ export default function RiskFactorsForm({
             classNames={{
               label: "text-sm font-medium text-gray-700 -mt-6",
               trigger: "mt-1",
+              listboxWrapper: "max-h-[400px]",
+              popoverContent: "w-full min-w-[320px]",
             }}
           >
             <SelectItem key="no">Нет</SelectItem>
-            <SelectItem key="yes">
-              Да, работаю в условиях повышенной радиации
+            <SelectItem key="yes" textValue="Да">
+              <div className="flex flex-col">
+                <span className="text-small">Да</span>
+                <span className="text-tiny text-default-400">
+                  работаю в условиях повышенной радиации
+                </span>
+              </div>
             </SelectItem>
           </Select>
         </CardBody>
