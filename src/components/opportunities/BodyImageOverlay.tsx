@@ -144,7 +144,7 @@ export default function BodyImageOverlay({
   };
 
   return (
-    <div className="absolute inset-0">
+    <div className="absolute inset-0 -mb-16">
       {Object.entries(bodyZones).map(([zoneName, zone]) => {
         const zoneColor = getZoneColor(zoneName);
         const numbers = getZoneNumbers(zoneName);
