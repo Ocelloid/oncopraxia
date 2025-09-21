@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Spinner } from "@heroui/react";
+import Image from "next/image";
 import {
   type RiskAssessmentResult,
   type BodyZone,
@@ -10,6 +11,7 @@ import {
 import { getBodyZoneRiskColor, getCancerTypesForZone } from "./RiskCalculator";
 import BodyDiagram3D from "./BodyDiagram3D";
 import ViewModeToggle from "./ViewModeToggle";
+import BodyImageOverlay from "./BodyImageOverlay";
 
 interface BodyDiagramProps {
   riskResults: RiskAssessmentResult | null;
@@ -23,6 +25,7 @@ export default function BodyDiagram({
   isLoading,
 }: BodyDiagramProps) {
   const [viewMode, setViewMode] = useState<"2d" | "3d">("2d");
+  const [selectedZone2D, setSelectedZone2D] = useState<string | null>(null);
 
   if (isLoading) {
     return (
@@ -81,98 +84,73 @@ export default function BodyDiagram({
         />
       ) : (
         <div className="flex flex-col items-center">
-          {/* SVG диаграмма человеческого тела */}
-          <div className="relative">
-            <svg
-              viewBox="0 0 300 400"
-              className="h-auto w-full max-w-md"
-              style={{ maxHeight: "500px" }}
-            >
-              {/* Контур тела */}
-              <g stroke="#374151" strokeWidth="2" fill="none">
-                {/* Голова */}
-                <circle cx="150" cy="50" r="25" />
+          {/* Изображение человеческого тела с зонами риска */}
+          <div className="relative" style={{ height: "500px" }}>
+            <Image
+              src="/body.jpg"
+              alt="Диаграмма человеческого тела"
+              width={300}
+              height={400}
+              className="h-auto w-full max-w-md rounded-lg shadow-sm"
+              style={{ maxWidth: "300px" }}
+              priority
+            />
 
-                {/* Шея */}
-                <line x1="150" y1="75" x2="150" y2="90" />
-
-                {/* Туловище */}
-                <ellipse cx="150" cy="180" rx="60" ry="90" />
-
-                {/* Руки */}
-                <line x1="90" y1="120" x2="60" y2="200" />
-                <line x1="210" y1="120" x2="240" y2="200" />
-
-                {/* Ноги */}
-                <line x1="120" y1="270" x2="110" y2="380" />
-                <line x1="180" y1="270" x2="190" y2="380" />
-              </g>
-
-              {/* Зоны риска */}
-              {Object.entries(bodyZones).map(([zoneName, zone]) => {
-                const zoneColor = getZoneColor(zoneName);
-                const numbers = getZoneNumbers(zoneName);
-
-                return (
-                  <g key={zoneName}>
-                    {/* Цветовая зона */}
-                    <circle
-                      cx={zone.x}
-                      cy={zone.y}
-                      r="15"
-                      fill={zoneColor}
-                      stroke="#374151"
-                      strokeWidth="1"
-                      opacity="0.8"
-                      className="transition-all duration-300"
-                    />
-
-                    {/* Номера заболеваний в зоне */}
-                    {numbers.length > 0 && (
-                      <>
-                        {numbers.length === 1 ? (
-                          <text
-                            x={zone.x}
-                            y={zone.y + 4}
-                            textAnchor="middle"
-                            className="fill-white text-xs font-bold"
-                            style={{
-                              textShadow: "1px 1px 1px rgba(0,0,0,0.5)",
-                            }}
-                          >
-                            {numbers[0]}
-                          </text>
-                        ) : (
-                          <text
-                            x={zone.x}
-                            y={zone.y + 4}
-                            textAnchor="middle"
-                            className="fill-white text-xs font-bold"
-                            style={{
-                              textShadow: "1px 1px 1px rgba(0,0,0,0.5)",
-                            }}
-                          >
-                            {numbers.slice(0, 2).join(",")}
-                            {numbers.length > 2 && "..."}
-                          </text>
-                        )}
-                      </>
-                    )}
-
-                    {/* Подпись зоны */}
-                    <text
-                      x={zone.x}
-                      y={zone.y + 35}
-                      textAnchor="middle"
-                      className="fill-gray-600 text-xs"
-                    >
-                      {getZoneLabel(zoneName)}
-                    </text>
-                  </g>
-                );
-              })}
-            </svg>
+            {/* Интерактивные зоны риска поверх изображения */}
+            <BodyImageOverlay
+              bodyZones={bodyZones}
+              riskResults={riskResults}
+              getZoneColor={getZoneColor}
+              getZoneNumbers={getZoneNumbers}
+              onZoneSelect={setSelectedZone2D}
+              selectedZone={selectedZone2D}
+            />
           </div>
+
+          {/* Информация о выбранной зоне */}
+          {selectedZone2D && riskResults && (
+            <div className="mt-4 max-w-md rounded-lg bg-gray-50 p-4">
+              <h4 className="mb-2 font-semibold text-gray-800">
+                {getZoneLabel(selectedZone2D)}
+              </h4>
+              <div className="text-sm text-gray-600">
+                {(() => {
+                  const zoneRisks = getCancerTypesForZone(
+                    selectedZone2D,
+                    riskResults,
+                  );
+                  if (zoneRisks.length === 0) {
+                    return <p>Нет данных о рисках для этой зоны</p>;
+                  }
+                  return (
+                    <ul className="space-y-1">
+                      {zoneRisks.slice(0, 3).map((risk, index) => (
+                        <li key={index} className="flex justify-between">
+                          <span>{risk.cancerType.name}</span>
+                          <span
+                            className={`font-medium ${
+                              risk.riskLevel === "high"
+                                ? "text-red-600"
+                                : risk.riskLevel === "medium"
+                                  ? "text-orange-600"
+                                  : "text-green-600"
+                            }`}
+                          >
+                            {risk.riskLabel}
+                          </span>
+                        </li>
+                      ))}
+                      {zoneRisks.length > 3 && (
+                        <li className="text-gray-500">
+                          и ещё {zoneRisks.length - 3} заболеваний...
+                        </li>
+                      )}
+                    </ul>
+                  );
+                })()}
+              </div>
+            </div>
+          )}
 
           {/* Легенда */}
           <div className="mt-6 w-full max-w-md">
@@ -195,21 +173,25 @@ export default function BodyDiagram({
             </div>
           </div>
 
-          {/* Инструкция */}
-          {!riskResults && (
-            <div className="mt-4 text-center text-sm text-gray-500">
-              <p>Заполните форму, чтобы увидеть зоны риска на диаграмме</p>
-            </div>
-          )}
-
-          {riskResults && (
-            <div className="mt-4 text-center text-sm text-gray-600">
-              <p>
-                Цифры на диаграмме соответствуют номерам заболеваний в списке
-                результатов
+          {/* Инструкции */}
+          <div className="mt-4 max-w-md text-center text-sm text-gray-600">
+            {!riskResults ? (
+              <p className="text-gray-500">
+                Заполните форму, чтобы увидеть зоны риска на диаграмме
               </p>
-            </div>
-          )}
+            ) : (
+              <div className="space-y-2">
+                <p>
+                  👆 Нажимайте на цветные зоны для получения подробной
+                  информации
+                </p>
+                <p>
+                  Цифры на диаграмме соответствуют номерам заболеваний в списке
+                  результатов
+                </p>
+              </div>
+            )}
+          </div>
         </div>
       )}
     </div>
