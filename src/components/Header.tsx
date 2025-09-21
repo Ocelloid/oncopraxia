@@ -31,6 +31,11 @@ export default function Header() {
             <Link href="/opportunities" className="transition-colors">
               Возможности
             </Link>
+            {session && (
+              <Link href="/admin" className="transition-colors">
+                Кабинет
+              </Link>
+            )}
           </nav>
 
           {/* Аутентификация */}
