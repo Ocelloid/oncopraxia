@@ -1,0 +1,580 @@
+{
+  "cancerTypes": [
+    {
+      "id": 1,
+      "name": "Рак легких",
+      "bodyZone": "chest",
+      "baseRisk": {
+        "male": { "young": 0.05, "middle": 0.15, "elderly": 0.35 },
+        "female": { "young": 0.03, "middle": 0.12, "elderly": 0.28 }
+      },
+      "riskFactors": {
+        "smoking": { "yes": 15.0, "former": 5.0, "no": 1.0 },
+        "alcohol": {
+          "never": 1.0,
+          "rarely": 1.1,
+          "moderate": 1.3,
+          "frequent": 1.8
+        },
+        "physicalActivity": { "low": 1.4, "medium": 1.0, "high": 0.8 },
+        "diet": { "balanced": 0.9, "unbalanced": 1.3 },
+        "familyHistory": { "yes": 2.5, "no": 1.0 },
+        "chemicals": { "yes": 2.8, "no": 1.0 },
+        "radiation": { "yes": 3.2, "no": 1.0 }
+      }
+    },
+    {
+      "id": 2,
+      "name": "Рак молочной железы",
+      "bodyZone": "breast",
+      "baseRisk": {
+        "male": { "young": 0.001, "middle": 0.002, "elderly": 0.005 },
+        "female": { "young": 0.02, "middle": 0.08, "elderly": 0.15 }
+      },
+      "riskFactors": {
+        "smoking": { "yes": 1.8, "former": 1.3, "no": 1.0 },
+        "alcohol": {
+          "never": 1.0,
+          "rarely": 1.2,
+          "moderate": 1.5,
+          "frequent": 2.1
+        },
+        "physicalActivity": { "low": 1.3, "medium": 1.0, "high": 0.7 },
+        "diet": { "balanced": 0.8, "unbalanced": 1.4 },
+        "familyHistory": { "yes": 3.5, "no": 1.0 },
+        "chemicals": { "yes": 1.4, "no": 1.0 },
+        "radiation": { "yes": 2.1, "no": 1.0 }
+      }
+    },
+    {
+      "id": 3,
+      "name": "Рак предстательной железы",
+      "bodyZone": "pelvis",
+      "baseRisk": {
+        "male": { "young": 0.01, "middle": 0.06, "elderly": 0.25 },
+        "female": { "young": 0.0, "middle": 0.0, "elderly": 0.0 }
+      },
+      "riskFactors": {
+        "smoking": { "yes": 1.6, "former": 1.2, "no": 1.0 },
+        "alcohol": {
+          "never": 1.0,
+          "rarely": 1.1,
+          "moderate": 1.2,
+          "frequent": 1.4
+        },
+        "physicalActivity": { "low": 1.2, "medium": 1.0, "high": 0.8 },
+        "diet": { "balanced": 0.9, "unbalanced": 1.3 },
+        "familyHistory": { "yes": 2.8, "no": 1.0 },
+        "chemicals": { "yes": 1.3, "no": 1.0 },
+        "radiation": { "yes": 1.5, "no": 1.0 }
+      }
+    },
+    {
+      "id": 4,
+      "name": "Рак желудка",
+      "bodyZone": "abdomen",
+      "baseRisk": {
+        "male": { "young": 0.03, "middle": 0.08, "elderly": 0.18 },
+        "female": { "young": 0.02, "middle": 0.05, "elderly": 0.12 }
+      },
+      "riskFactors": {
+        "smoking": { "yes": 2.5, "former": 1.5, "no": 1.0 },
+        "alcohol": {
+          "never": 1.0,
+          "rarely": 1.3,
+          "moderate": 1.8,
+          "frequent": 2.4
+        },
+        "physicalActivity": { "low": 1.2, "medium": 1.0, "high": 0.9 },
+        "diet": { "balanced": 0.7, "unbalanced": 1.8 },
+        "familyHistory": { "yes": 2.2, "no": 1.0 },
+        "chemicals": { "yes": 1.6, "no": 1.0 },
+        "radiation": { "yes": 1.4, "no": 1.0 }
+      }
+    },
+    {
+      "id": 5,
+      "name": "Рак печени",
+      "bodyZone": "abdomen",
+      "baseRisk": {
+        "male": { "young": 0.02, "middle": 0.07, "elderly": 0.16 },
+        "female": { "young": 0.01, "middle": 0.04, "elderly": 0.09 }
+      },
+      "riskFactors": {
+        "smoking": { "yes": 2.1, "former": 1.4, "no": 1.0 },
+        "alcohol": {
+          "never": 1.0,
+          "rarely": 1.5,
+          "moderate": 2.8,
+          "frequent": 4.2
+        },
+        "physicalActivity": { "low": 1.3, "medium": 1.0, "high": 0.8 },
+        "diet": { "balanced": 0.8, "unbalanced": 1.5 },
+        "familyHistory": { "yes": 2.0, "no": 1.0 },
+        "chemicals": { "yes": 2.2, "no": 1.0 },
+        "radiation": { "yes": 1.6, "no": 1.0 }
+      }
+    },
+    {
+      "id": 6,
+      "name": "Рак поджелудочной железы",
+      "bodyZone": "abdomen",
+      "baseRisk": {
+        "male": { "young": 0.015, "middle": 0.05, "elderly": 0.12 },
+        "female": { "young": 0.012, "middle": 0.04, "elderly": 0.1 }
+      },
+      "riskFactors": {
+        "smoking": { "yes": 3.2, "former": 1.8, "no": 1.0 },
+        "alcohol": {
+          "never": 1.0,
+          "rarely": 1.2,
+          "moderate": 1.6,
+          "frequent": 2.1
+        },
+        "physicalActivity": { "low": 1.4, "medium": 1.0, "high": 0.8 },
+        "diet": { "balanced": 0.8, "unbalanced": 1.6 },
+        "familyHistory": { "yes": 2.8, "no": 1.0 },
+        "chemicals": { "yes": 1.5, "no": 1.0 },
+        "radiation": { "yes": 1.3, "no": 1.0 },
+        "diabetes": { "yes": 2.2, "no": 1.0 }
+      }
+    },
+    {
+      "id": 7,
+      "name": "Рак толстой кишки",
+      "bodyZone": "abdomen",
+      "baseRisk": {
+        "male": { "young": 0.025, "middle": 0.08, "elderly": 0.2 },
+        "female": { "young": 0.02, "middle": 0.06, "elderly": 0.16 }
+      },
+      "riskFactors": {
+        "smoking": { "yes": 1.8, "former": 1.3, "no": 1.0 },
+        "alcohol": {
+          "never": 1.0,
+          "rarely": 1.2,
+          "moderate": 1.5,
+          "frequent": 1.9
+        },
+        "physicalActivity": { "low": 1.5, "medium": 1.0, "high": 0.7 },
+        "diet": { "balanced": 0.7, "unbalanced": 1.7 },
+        "familyHistory": { "yes": 2.5, "no": 1.0 },
+        "chemicals": { "yes": 1.3, "no": 1.0 },
+        "radiation": { "yes": 1.2, "no": 1.0 }
+      }
+    },
+    {
+      "id": 8,
+      "name": "Рак шейки матки",
+      "bodyZone": "pelvis",
+      "baseRisk": {
+        "male": { "young": 0.0, "middle": 0.0, "elderly": 0.0 },
+        "female": { "young": 0.03, "middle": 0.04, "elderly": 0.03 }
+      },
+      "riskFactors": {
+        "smoking": { "yes": 2.8, "former": 1.6, "no": 1.0 },
+        "alcohol": {
+          "never": 1.0,
+          "rarely": 1.1,
+          "moderate": 1.3,
+          "frequent": 1.6
+        },
+        "physicalActivity": { "low": 1.2, "medium": 1.0, "high": 0.9 },
+        "diet": { "balanced": 0.9, "unbalanced": 1.2 },
+        "familyHistory": { "yes": 1.8, "no": 1.0 },
+        "chemicals": { "yes": 1.4, "no": 1.0 },
+        "radiation": { "yes": 1.3, "no": 1.0 }
+      }
+    },
+    {
+      "id": 9,
+      "name": "Рак яичников",
+      "bodyZone": "pelvis",
+      "baseRisk": {
+        "male": { "young": 0.0, "middle": 0.0, "elderly": 0.0 },
+        "female": { "young": 0.015, "middle": 0.04, "elderly": 0.08 }
+      },
+      "riskFactors": {
+        "smoking": { "yes": 1.5, "former": 1.2, "no": 1.0 },
+        "alcohol": {
+          "never": 1.0,
+          "rarely": 1.1,
+          "moderate": 1.2,
+          "frequent": 1.4
+        },
+        "physicalActivity": { "low": 1.2, "medium": 1.0, "high": 0.8 },
+        "diet": { "balanced": 0.9, "unbalanced": 1.3 },
+        "familyHistory": { "yes": 3.2, "no": 1.0 },
+        "chemicals": { "yes": 1.3, "no": 1.0 },
+        "radiation": { "yes": 1.4, "no": 1.0 }
+      }
+    },
+    {
+      "id": 10,
+      "name": "Рак почек",
+      "bodyZone": "abdomen",
+      "baseRisk": {
+        "male": { "young": 0.02, "middle": 0.06, "elderly": 0.14 },
+        "female": { "young": 0.01, "middle": 0.04, "elderly": 0.09 }
+      },
+      "riskFactors": {
+        "smoking": { "yes": 2.4, "former": 1.5, "no": 1.0 },
+        "alcohol": {
+          "never": 1.0,
+          "rarely": 1.1,
+          "moderate": 1.2,
+          "frequent": 1.4
+        },
+        "physicalActivity": { "low": 1.3, "medium": 1.0, "high": 0.8 },
+        "diet": { "balanced": 0.9, "unbalanced": 1.4 },
+        "familyHistory": { "yes": 2.1, "no": 1.0 },
+        "chemicals": { "yes": 1.8, "no": 1.0 },
+        "radiation": { "yes": 1.5, "no": 1.0 },
+        "hypertension": { "yes": 1.6, "no": 1.0 }
+      }
+    },
+    {
+      "id": 11,
+      "name": "Рак мочевого пузыря",
+      "bodyZone": "pelvis",
+      "baseRisk": {
+        "male": { "young": 0.015, "middle": 0.05, "elderly": 0.13 },
+        "female": { "young": 0.005, "middle": 0.02, "elderly": 0.06 }
+      },
+      "riskFactors": {
+        "smoking": { "yes": 4.2, "former": 2.1, "no": 1.0 },
+        "alcohol": {
+          "never": 1.0,
+          "rarely": 1.1,
+          "moderate": 1.2,
+          "frequent": 1.4
+        },
+        "physicalActivity": { "low": 1.2, "medium": 1.0, "high": 0.9 },
+        "diet": { "balanced": 0.9, "unbalanced": 1.3 },
+        "familyHistory": { "yes": 2.0, "no": 1.0 },
+        "chemicals": { "yes": 2.8, "no": 1.0 },
+        "radiation": { "yes": 1.4, "no": 1.0 }
+      }
+    },
+    {
+      "id": 12,
+      "name": "Рак кожи (меланома)",
+      "bodyZone": "skin",
+      "baseRisk": {
+        "male": { "young": 0.02, "middle": 0.05, "elderly": 0.08 },
+        "female": { "young": 0.025, "middle": 0.04, "elderly": 0.06 }
+      },
+      "riskFactors": {
+        "smoking": { "yes": 1.3, "former": 1.1, "no": 1.0 },
+        "alcohol": {
+          "never": 1.0,
+          "rarely": 1.1,
+          "moderate": 1.2,
+          "frequent": 1.3
+        },
+        "physicalActivity": { "low": 1.1, "medium": 1.0, "high": 0.9 },
+        "diet": { "balanced": 0.9, "unbalanced": 1.2 },
+        "familyHistory": { "yes": 2.8, "no": 1.0 },
+        "chemicals": { "yes": 1.4, "no": 1.0 },
+        "radiation": { "yes": 2.2, "no": 1.0 }
+      }
+    },
+    {
+      "id": 13,
+      "name": "Рак щитовидной железы",
+      "bodyZone": "neck",
+      "baseRisk": {
+        "male": { "young": 0.008, "middle": 0.015, "elderly": 0.025 },
+        "female": { "young": 0.02, "middle": 0.04, "elderly": 0.05 }
+      },
+      "riskFactors": {
+        "smoking": { "yes": 0.8, "former": 0.9, "no": 1.0 },
+        "alcohol": {
+          "never": 1.0,
+          "rarely": 1.0,
+          "moderate": 1.1,
+          "frequent": 1.2
+        },
+        "physicalActivity": { "low": 1.1, "medium": 1.0, "high": 0.9 },
+        "diet": { "balanced": 0.9, "unbalanced": 1.2 },
+        "familyHistory": { "yes": 2.5, "no": 1.0 },
+        "chemicals": { "yes": 1.3, "no": 1.0 },
+        "radiation": { "yes": 3.5, "no": 1.0 }
+      }
+    },
+    {
+      "id": 14,
+      "name": "Рак пищевода",
+      "bodyZone": "chest",
+      "baseRisk": {
+        "male": { "young": 0.01, "middle": 0.04, "elderly": 0.1 },
+        "female": { "young": 0.005, "middle": 0.02, "elderly": 0.06 }
+      },
+      "riskFactors": {
+        "smoking": { "yes": 5.8, "former": 2.4, "no": 1.0 },
+        "alcohol": {
+          "never": 1.0,
+          "rarely": 1.5,
+          "moderate": 3.2,
+          "frequent": 6.1
+        },
+        "physicalActivity": { "low": 1.3, "medium": 1.0, "high": 0.8 },
+        "diet": { "balanced": 0.7, "unbalanced": 2.1 },
+        "familyHistory": { "yes": 2.2, "no": 1.0 },
+        "chemicals": { "yes": 1.6, "no": 1.0 },
+        "radiation": { "yes": 1.4, "no": 1.0 }
+      }
+    },
+    {
+      "id": 15,
+      "name": "Рак головного мозга",
+      "bodyZone": "head",
+      "baseRisk": {
+        "male": { "young": 0.008, "middle": 0.012, "elderly": 0.018 },
+        "female": { "young": 0.006, "middle": 0.009, "elderly": 0.014 }
+      },
+      "riskFactors": {
+        "smoking": { "yes": 1.4, "former": 1.2, "no": 1.0 },
+        "alcohol": {
+          "never": 1.0,
+          "rarely": 1.1,
+          "moderate": 1.2,
+          "frequent": 1.3
+        },
+        "physicalActivity": { "low": 1.1, "medium": 1.0, "high": 0.9 },
+        "diet": { "balanced": 0.9, "unbalanced": 1.2 },
+        "familyHistory": { "yes": 2.1, "no": 1.0 },
+        "chemicals": { "yes": 1.8, "no": 1.0 },
+        "radiation": { "yes": 2.8, "no": 1.0 }
+      }
+    },
+    {
+      "id": 16,
+      "name": "Лейкемия",
+      "bodyZone": "blood",
+      "baseRisk": {
+        "male": { "young": 0.012, "middle": 0.018, "elderly": 0.035 },
+        "female": { "young": 0.008, "middle": 0.014, "elderly": 0.025 }
+      },
+      "riskFactors": {
+        "smoking": { "yes": 1.8, "former": 1.3, "no": 1.0 },
+        "alcohol": {
+          "never": 1.0,
+          "rarely": 1.1,
+          "moderate": 1.2,
+          "frequent": 1.4
+        },
+        "physicalActivity": { "low": 1.2, "medium": 1.0, "high": 0.9 },
+        "diet": { "balanced": 0.9, "unbalanced": 1.3 },
+        "familyHistory": { "yes": 2.4, "no": 1.0 },
+        "chemicals": { "yes": 2.8, "no": 1.0 },
+        "radiation": { "yes": 4.2, "no": 1.0 }
+      }
+    },
+    {
+      "id": 17,
+      "name": "Лимфома",
+      "bodyZone": "lymph",
+      "baseRisk": {
+        "male": { "young": 0.015, "middle": 0.025, "elderly": 0.045 },
+        "female": { "young": 0.012, "middle": 0.02, "elderly": 0.035 }
+      },
+      "riskFactors": {
+        "smoking": { "yes": 1.6, "former": 1.2, "no": 1.0 },
+        "alcohol": {
+          "never": 1.0,
+          "rarely": 1.1,
+          "moderate": 1.3,
+          "frequent": 1.5
+        },
+        "physicalActivity": { "low": 1.3, "medium": 1.0, "high": 0.8 },
+        "diet": { "balanced": 0.8, "unbalanced": 1.4 },
+        "familyHistory": { "yes": 2.2, "no": 1.0 },
+        "chemicals": { "yes": 2.1, "no": 1.0 },
+        "radiation": { "yes": 2.5, "no": 1.0 }
+      }
+    },
+    {
+      "id": 18,
+      "name": "Саркома",
+      "bodyZone": "bones",
+      "baseRisk": {
+        "male": { "young": 0.006, "middle": 0.008, "elderly": 0.012 },
+        "female": { "young": 0.005, "middle": 0.007, "elderly": 0.01 }
+      },
+      "riskFactors": {
+        "smoking": { "yes": 1.5, "former": 1.2, "no": 1.0 },
+        "alcohol": {
+          "never": 1.0,
+          "rarely": 1.1,
+          "moderate": 1.2,
+          "frequent": 1.3
+        },
+        "physicalActivity": { "low": 1.2, "medium": 1.0, "high": 0.9 },
+        "diet": { "balanced": 0.9, "unbalanced": 1.2 },
+        "familyHistory": { "yes": 2.8, "no": 1.0 },
+        "chemicals": { "yes": 1.9, "no": 1.0 },
+        "radiation": { "yes": 3.1, "no": 1.0 }
+      }
+    },
+    {
+      "id": 19,
+      "name": "Множественная миелома",
+      "bodyZone": "bones",
+      "baseRisk": {
+        "male": { "young": 0.003, "middle": 0.008, "elderly": 0.018 },
+        "female": { "young": 0.002, "middle": 0.006, "elderly": 0.014 }
+      },
+      "riskFactors": {
+        "smoking": { "yes": 1.4, "former": 1.2, "no": 1.0 },
+        "alcohol": {
+          "never": 1.0,
+          "rarely": 1.1,
+          "moderate": 1.2,
+          "frequent": 1.3
+        },
+        "physicalActivity": { "low": 1.2, "medium": 1.0, "high": 0.9 },
+        "diet": { "balanced": 0.9, "unbalanced": 1.3 },
+        "familyHistory": { "yes": 2.1, "no": 1.0 },
+        "chemicals": { "yes": 1.8, "no": 1.0 },
+        "radiation": { "yes": 2.2, "no": 1.0 }
+      }
+    },
+    {
+      "id": 20,
+      "name": "Рак костей",
+      "bodyZone": "bones",
+      "baseRisk": {
+        "male": { "young": 0.004, "middle": 0.006, "elderly": 0.01 },
+        "female": { "young": 0.003, "middle": 0.005, "elderly": 0.008 }
+      },
+      "riskFactors": {
+        "smoking": { "yes": 1.6, "former": 1.3, "no": 1.0 },
+        "alcohol": {
+          "never": 1.0,
+          "rarely": 1.1,
+          "moderate": 1.2,
+          "frequent": 1.3
+        },
+        "physicalActivity": { "low": 1.1, "medium": 1.0, "high": 0.9 },
+        "diet": { "balanced": 0.9, "unbalanced": 1.2 },
+        "familyHistory": { "yes": 2.5, "no": 1.0 },
+        "chemicals": { "yes": 1.7, "no": 1.0 },
+        "radiation": { "yes": 2.8, "no": 1.0 }
+      }
+    }
+  ],
+  "bodyZones": {
+    "head": { "x": 150, "y": 50, "color": "#FF6B6B" },
+    "neck": { "x": 150, "y": 90, "color": "#4ECDC4" },
+    "chest": { "x": 150, "y": 140, "color": "#45B7D1" },
+    "breast": { "x": 120, "y": 130, "color": "#96CEB4" },
+    "abdomen": { "x": 150, "y": 200, "color": "#FECA57" },
+    "pelvis": { "x": 150, "y": 260, "color": "#FF9FF3" },
+    "skin": { "x": 50, "y": 150, "color": "#54A0FF" },
+    "blood": { "x": 250, "y": 150, "color": "#5F27CD" },
+    "lymph": { "x": 80, "y": 180, "color": "#00D2D3" },
+    "bones": { "x": 220, "y": 220, "color": "#FF6348" }
+  },
+  "ageGroups": {
+    "young": { "min": 18, "max": 39 },
+    "middle": { "min": 40, "max": 64 },
+    "elderly": { "min": 65, "max": 100 }
+  },
+  "riskLevels": {
+    "low": { "threshold": 0.3, "color": "#4CAF50", "label": "Низкий" },
+    "medium": { "threshold": 0.7, "color": "#FF9800", "label": "Средний" },
+    "high": { "threshold": 1.0, "color": "#F44336", "label": "Высокий" }
+  },
+  "cities": [
+    "Москва",
+    "Санкт-Петербург",
+    "Новосибирск",
+    "Екатеринбург",
+    "Казань",
+    "Нижний Новгород",
+    "Челябинск",
+    "Самара",
+    "Омск",
+    "Ростов-на-Дону",
+    "Уфа",
+    "Красноярск",
+    "Воронеж",
+    "Пермь",
+    "Волгоград",
+    "Краснодар",
+    "Саратов",
+    "Тюмень",
+    "Тольятти",
+    "Ижевск",
+    "Барнаул",
+    "Ульяновск",
+    "Иркутск",
+    "Хабаровск",
+    "Ярославль",
+    "Владивосток",
+    "Махачкала",
+    "Томск",
+    "Оренбург",
+    "Кемерово",
+    "Новокузнецк",
+    "Рязань",
+    "Пенза",
+    "Астрахань",
+    "Липецк",
+    "Тула",
+    "Киров",
+    "Чебоксары",
+    "Курск"
+  ],
+  "professions": [
+    "Врач",
+    "Учитель",
+    "Инженер",
+    "Программист",
+    "Менеджер",
+    "Продавец",
+    "Водитель",
+    "Строитель",
+    "Повар",
+    "Бухгалтер",
+    "Юрист",
+    "Медсестра",
+    "Слесарь",
+    "Электрик",
+    "Парикмахер",
+    "Официант",
+    "Охранник",
+    "Уборщик",
+    "Секретарь",
+    "Дизайнер",
+    "Журналист",
+    "Фотограф",
+    "Художник",
+    "Музыкант",
+    "Спортсмен",
+    "Тренер",
+    "Психолог",
+    "Социальный работник",
+    "Библиотекарь",
+    "Агроном",
+    "Ветеринар",
+    "Фармацевт",
+    "Лаборант",
+    "Техник",
+    "Механик",
+    "Сварщик",
+    "Токарь",
+    "Монтажник",
+    "Крановщик",
+    "Экономист",
+    "Аналитик"
+  ],
+  "maritalStatus": [
+    "Холост/не замужем",
+    "Женат/замужем",
+    "Разведен(а)",
+    "Вдовец/вдова",
+    "Гражданский брак"
+  ],
+  "disclaimer": "Данная оценка рисков носит исключительно информационный характер и не может заменить профессиональную медицинскую консультацию. Для точной диагностики и оценки рисков обратитесь к врачу-онкологу."
+}
