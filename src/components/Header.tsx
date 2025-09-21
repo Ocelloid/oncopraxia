@@ -18,7 +18,7 @@ export default function Header() {
           </div>
 
           {/* Навигационное меню */}
-          <nav className="hidden items-center space-x-6 md:flex">
+          <nav className="hidden items-center space-x-2 md:flex">
             <Link href="/" className="transition-colors">
               Главная
             </Link>
@@ -36,22 +36,22 @@ export default function Header() {
                 Кабинет
               </Link>
             )}
-          </nav>
 
-          {/* Аутентификация */}
-          <div className="flex items-center space-x-4">
-            {session && (
-              <span className="text-sm text-black/70">
-                {session.user?.email}
-              </span>
-            )}
-            <Link
-              href={session ? "/api/auth/signout" : "/api/auth/signin"}
-              className="rounded-full bg-black/10 px-6 py-2 text-sm font-semibold no-underline transition hover:bg-black/20"
-            >
-              {session ? "Выйти" : "Войти"}
-            </Link>
-          </div>
+            {/* Аутентификация */}
+            <div className="flex items-center space-x-4">
+              {session && (
+                <span className="text-sm text-black/70">
+                  {session.user?.email}
+                </span>
+              )}
+              <Link
+                href={session ? "/auth/signout" : "/auth/signin"}
+                className="rounded-full bg-black/10 px-6 py-2 text-sm font-semibold no-underline transition hover:bg-black/20"
+              >
+                {session ? "Выйти" : "Войти"}
+              </Link>
+            </div>
+          </nav>
 
           {/* Мобильное меню (кнопка) */}
           <div className="md:hidden">
