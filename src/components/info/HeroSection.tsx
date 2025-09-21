@@ -10,15 +10,15 @@ export default function HeroSection() {
       <div className="relative z-10 container mx-auto px-4 py-16 text-center">
         <div className="mx-auto max-w-4xl">
           {/* Главный заголовок */}
-          <h1 className="leading-tight font-bold text-gray-900 md:text-7xl">
+          <h1 className="text-3xl leading-tight font-bold text-gray-900 md:text-7xl">
             Ранняя диагностика
           </h1>
-          <span className="mb-6 text-5xl font-bold text-red-600 md:text-7xl">
+          <span className="mb-6 text-3xl font-bold text-red-600 md:text-7xl">
             спасает жизни
           </span>
 
           {/* Подзаголовок */}
-          <p className="mb-8 text-xl leading-relaxed text-gray-700 md:text-2xl">
+          <p className="mb-8 leading-relaxed text-gray-700 md:text-2xl">
             Информационный портал о возможностях ранней диагностики
             онкологических заболеваний в Пермском крае
           </p>
