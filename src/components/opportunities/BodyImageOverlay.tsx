@@ -57,8 +57,8 @@ function RiskZone({
           backgroundColor: color,
           borderColor: isSelected ? "#1f2937" : "#374151",
           borderWidth: isSelected ? "3px" : "2px",
-          width: isSelected || isHovered ? "35px" : "30px",
-          height: isSelected || isHovered ? "35px" : "30px",
+          width: isSelected || isHovered ? "50px" : "40px",
+          height: isSelected || isHovered ? "50px" : "40px",
           opacity: isSelected ? 1 : 0.9,
           boxShadow: isHovered ? "0 4px 12px rgba(0,0,0,0.3)" : "none",
           zIndex: isSelected || isHovered ? 20 : 10,
@@ -68,17 +68,32 @@ function RiskZone({
       >
         {/* Номера заболеваний */}
         {numbers.length > 0 && (
-          <span
-            className="text-xs font-bold text-white"
+          <div
+            className="text-center leading-tight font-bold break-words text-white"
             style={{
               textShadow: "1px 1px 2px rgba(0,0,0,0.8)",
-              fontSize: isSelected || isHovered ? "0.75rem" : "0.7rem",
+              fontSize: (() => {
+                const baseSize = isSelected || isHovered ? 0.85 : 0.8;
+                if (numbers.length === 1) return `${baseSize}rem`;
+                if (numbers.length === 2) return `${baseSize * 0.9}rem`;
+                if (numbers.length <= 4) return `${baseSize * 0.8}rem`;
+                return `${baseSize * 0.7}rem`;
+              })(),
+              lineHeight: numbers.length > 2 ? "1.1" : "1",
             }}
           >
-            {numbers.length === 1
-              ? numbers[0]
-              : `${numbers.slice(0, 2).join(",")}${numbers.length > 2 ? "..." : ""}`}
-          </span>
+            {(() => {
+              if (numbers.length === 1) {
+                return numbers[0];
+              } else if (numbers.length === 2) {
+                return `${numbers[0]} ${numbers[1]}`;
+              } else if (numbers.length <= 4) {
+                return numbers.join(" ");
+              } else {
+                return `${numbers.slice(0, 3).join(" ")}\n+${numbers.length - 3}`;
+              }
+            })()}
+          </div>
         )}
 
         {/* Индикатор пульсации для высокого риска */}

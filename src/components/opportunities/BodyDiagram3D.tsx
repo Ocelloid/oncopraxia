@@ -104,10 +104,33 @@ function RiskZone({
       {/* Номера заболеваний */}
       {numbers.length > 0 && (
         <Html center>
-          <div className="bg-opacity-50 pointer-events-none rounded bg-black px-1 text-xs font-bold text-white">
-            {numbers.length === 1
-              ? numbers[0]
-              : `${numbers.slice(0, 2).join(",")}${numbers.length > 2 ? "..." : ""}`}
+          <div
+            className="bg-opacity-80 pointer-events-none flex items-center justify-center rounded-full bg-black font-bold text-white"
+            style={{
+              width: "40px",
+              height: "40px",
+              fontSize: (() => {
+                if (numbers.length === 1) return "0.9rem";
+                if (numbers.length === 2) return "0.8rem";
+                if (numbers.length <= 4) return "0.7rem";
+                return "0.6rem";
+              })(),
+              lineHeight: numbers.length > 2 ? "1.1" : "1",
+            }}
+          >
+            <span className="text-center leading-tight">
+              {(() => {
+                if (numbers.length === 1) {
+                  return numbers[0];
+                } else if (numbers.length === 2) {
+                  return `${numbers[0]},${numbers[1]}`;
+                } else if (numbers.length <= 4) {
+                  return numbers.join(",");
+                } else {
+                  return `${numbers.slice(0, 3).join(",")}\n+${numbers.length - 3}`;
+                }
+              })()}
+            </span>
           </div>
         </Html>
       )}
